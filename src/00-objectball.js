@@ -114,3 +114,11 @@ function gameObject() {
         }
     }
 }
+
+let homePlayers = gameObject()["home"]["players"];
+let awayPlayers = gameObject()["away"]["players"];
+let allPlayers = {...homePlayers, ...awayPlayers};
+
+function numPointsScored(player) {
+    return allPlayers[`${player}`]["points"]
+}
