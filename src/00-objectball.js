@@ -1,7 +1,7 @@
 function gameObject() {
     return {
         home: {
-            teamName: "Brookklyn Nets",
+            teamName: "Brooklyn Nets",
             colors: ["Black", "White"],
             players: {
                 "Alan Anderson": {
@@ -115,10 +115,40 @@ function gameObject() {
     }
 }
 
-let homePlayers = gameObject()["home"]["players"];
-let awayPlayers = gameObject()["away"]["players"];
+let game = gameObject()
+let homePlayers = game["home"]["players"];
+let awayPlayers = game["away"]["players"];
 let allPlayers = {...homePlayers, ...awayPlayers};
 
 function numPointsScored(player) {
     return allPlayers[`${player}`]["points"]
+}
+
+function shoeSize(player) {
+    return allPlayers[`${player}`]["shoe"]
+}
+
+function teamColors(teamName) {
+    if (teamName === game["home"]["teamName"]) {
+        return game["home"]["colors"]
+    } else if (teamName === game["away"]["teamName"]) {
+        return game["away"]["colors"]
+    }
+}
+
+function teamNames(teamName) {
+    if (teamName === game["home"]["teamName"]) {
+        return Object.keys(homePlayers)
+    } else if (teamName === game["away"]["teamName"]) {
+        return Object.keys(awayPlayers)
+    }
+}
+
+function playerNumbers(teamName) {
+    if (teamName === game["home"]["teamName"])
+    return Object.values(homePlayers)
+}
+
+function playerStats(player) {
+    return allPlayers[`${player}`]
 }
