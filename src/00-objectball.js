@@ -115,40 +115,61 @@ function gameObject() {
     }
 }
 
-let game = gameObject()
+let game = gameObject();
 let homePlayers = game["home"]["players"];
 let awayPlayers = game["away"]["players"];
 let allPlayers = {...homePlayers, ...awayPlayers};
 
 function numPointsScored(player) {
-    return allPlayers[`${player}`]["points"]
+    return allPlayers[`${player}`]["points"];
 }
 
 function shoeSize(player) {
-    return allPlayers[`${player}`]["shoe"]
+    return allPlayers[`${player}`]["shoe"];
 }
 
 function teamColors(teamName) {
     if (teamName === game["home"]["teamName"]) {
-        return game["home"]["colors"]
+        return game["home"]["colors"];
     } else if (teamName === game["away"]["teamName"]) {
-        return game["away"]["colors"]
+        return game["away"]["colors"];
     }
 }
 
 function teamNames(teamName) {
     if (teamName === game["home"]["teamName"]) {
-        return Object.keys(homePlayers)
+        return Object.keys(homePlayers);
     } else if (teamName === game["away"]["teamName"]) {
-        return Object.keys(awayPlayers)
+        return Object.keys(awayPlayers);
     }
 }
 
 function playerNumbers(teamName) {
-    if (teamName === game["home"]["teamName"])
-    return Object.values(homePlayers)
+    if (teamName === game["home"]["teamName"]) {
+        const homeNumbers = Object.values(homePlayers).map((homePlayer) => {
+            return homePlayer["number"];
+        })
+        return homeNumbers.flat()
+    } else if (teamName === game["away"]["teamName"]) {
+        const awayNumbers = Object.values(awayPlayers).map((awayPlayer) => {
+            return awayPlayer["number"];
+        })
+        return awayNumbers.flat();
+    }
 }
 
 function playerStats(player) {
-    return allPlayers[`${player}`]
+    return allPlayers[`${player}`];
+}
+
+function bigShoeRebounds() {
+    let shoeSizes = Object.values(allPlayers).map((shoes) => {
+        return shoes["shoe"];
+    })
+    let biggestShoe = Math.max(...shoeSizes);
+    for (let player in allPlayers) {
+        if (biggestShoe === allPlayers[player]["shoe"]) {
+            return allPlayers[player]["rebounds"];
+        }
+    }
 }
