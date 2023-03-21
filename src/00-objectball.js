@@ -146,12 +146,12 @@ function teamNames(teamName) {
 
 function playerNumbers(teamName) {
     if (teamName === game["home"]["teamName"]) {
-        const homeNumbers = Object.values(homePlayers).map((homePlayer) => {
+        let homeNumbers = Object.values(homePlayers).map((homePlayer) => {
             return homePlayer["number"];
         })
         return homeNumbers.flat()
     } else if (teamName === game["away"]["teamName"]) {
-        const awayNumbers = Object.values(awayPlayers).map((awayPlayer) => {
+        let awayNumbers = Object.values(awayPlayers).map((awayPlayer) => {
             return awayPlayer["number"];
         })
         return awayNumbers.flat();
