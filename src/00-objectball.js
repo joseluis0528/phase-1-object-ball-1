@@ -173,3 +173,10 @@ function bigShoeRebounds() {
         }
     }
 }
+
+function mostPointsScored() {
+    let mostPoints = Object.values(allPlayers).map((points) => {
+        return points["points"]
+    })
+    return Math.max(...mostPoints)
+}
