@@ -175,8 +175,28 @@ function bigShoeRebounds() {
 }
 
 function mostPointsScored() {
-    let mostPoints = Object.values(allPlayers).map((points) => {
-        return points["points"]
-    })
-    return Math.max(...mostPoints)
+    let arr = []
+    for (let player in allPlayers) {
+        arr.push(allPlayers[player]["points"])
+    }
+    return Math.max(...arr)
+}
+
+function winningTeam() {
+    let homePoints = 0
+    let awayPoints = 0
+
+    for (let player in homePlayers) {
+        homePoints += homePlayers[player]["points"]
+    }
+
+    for (let player in awayPlayers) {
+        awayPoints += awayPlayers[player]["points"]
+    }
+
+    if (homePoints > awayPoints) {
+        return game["home"]["teamName"]
+    } else if (awayPoints > homePoints) {
+        return game["away"]["teamName"]
+    }
 }
