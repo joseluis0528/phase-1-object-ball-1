@@ -149,12 +149,12 @@ function playerNumbers(teamName) {
         let homeNumbers = Object.values(homePlayers).map((homePlayer) => {
             return homePlayer["number"];
         })
-        return homeNumbers.flat()
+        return homeNumbers;
     } else if (teamName === game["away"]["teamName"]) {
         let awayNumbers = Object.values(awayPlayers).map((awayPlayer) => {
             return awayPlayer["number"];
         })
-        return awayNumbers.flat();
+        return awayNumbers;
     }
 }
 
@@ -175,28 +175,28 @@ function bigShoeRebounds() {
 }
 
 function mostPointsScored() {
-    let arr = []
+    let arr = [];
     for (let player in allPlayers) {
-        arr.push(allPlayers[player]["points"])
+        arr.push(allPlayers[player]["points"]);
     }
-    return Math.max(...arr)
+    return Math.max(...arr);
 }
 
 function winningTeam() {
-    let homePoints = 0
-    let awayPoints = 0
+    let homePoints = 0;
+    let awayPoints = 0;
 
     for (let player in homePlayers) {
-        homePoints += homePlayers[player]["points"]
+        homePoints += homePlayers[player]["points"];
     }
 
     for (let player in awayPlayers) {
-        awayPoints += awayPlayers[player]["points"]
+        awayPoints += awayPlayers[player]["points"];
     }
 
     if (homePoints > awayPoints) {
-        return game["home"]["teamName"]
+        return game["home"]["teamName"];
     } else if (awayPoints > homePoints) {
-        return game["away"]["teamName"]
+        return game["away"]["teamName"];
     }
 }
